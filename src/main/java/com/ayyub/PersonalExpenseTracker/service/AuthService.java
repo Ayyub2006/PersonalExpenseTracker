@@ -16,11 +16,14 @@ public class AuthService {
 	
 	private final UserRepository userRepository;
 	private final PasswordEncoder passwordEncoder;
+	private final JwtService jwtService;
 	
 	public AuthService(UserRepository userRepository,
-			PasswordEncoder passwordEncoder) {
+			PasswordEncoder passwordEncoder,
+			JwtService jwtService) {
 		this.userRepository = userRepository;
 		this.passwordEncoder = passwordEncoder;
+		this.jwtService = jwtService;
 	}
 	
 	public User register(RegisterRequest request) {
@@ -49,6 +52,6 @@ public class AuthService {
 			throw new InvalidCredentialsException("Invalid email or password");
 		}
 		
-		return "Login Successful";
+		return jwtService.generateToken(user.getEmail());
 	}
 }
