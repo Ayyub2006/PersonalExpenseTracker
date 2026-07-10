@@ -12,6 +12,7 @@ import com.ayyub.PersonalExpenseTracker.exception.UserNotFoundException;
 import com.ayyub.PersonalExpenseTracker.repository.CategoryRepository;
 import com.ayyub.PersonalExpenseTracker.repository.IncomeRepository;
 import com.ayyub.PersonalExpenseTracker.repository.UserRepository;
+import com.ayyub.PersonalExpenseTracker.util.SecurityUtil;
 
 @Service
 public class IncomeService {
@@ -19,18 +20,20 @@ public class IncomeService {
 	private final IncomeRepository incomeRepository;
 	private final UserRepository userRepository;
 	private final CategoryRepository categoryRepository;
+	private final SecurityUtil securityUtil;
 	
 	public IncomeService(IncomeRepository incomerpRepository,
 			UserRepository userRepository,
-			CategoryRepository categoryRepository) {
+			CategoryRepository categoryRepository,
+			SecurityUtil securityUtil) {
 		this.incomeRepository = incomerpRepository;
 		this.userRepository = userRepository;
 		this.categoryRepository = categoryRepository;
+		this.securityUtil = securityUtil;
 	}
 	
 	public Income createIncome(IncomeRequest request) {
-		User user = userRepository.findById(request.getUserId())
-				.orElseThrow(() -> new UserNotFoundException("User Not Found"));
+		User user = securityUtil.getLoggedInUser();
 		
 //		Category category = categoryRepository.findById(request.getCategoryId())
 //				.orElseThrow(() -> new CategoryNotFoundException("Category Not Found"));
@@ -47,37 +50,41 @@ public class IncomeService {
 	}
 	
 	public List<Income> getAllIncome(){
-		return incomeRepository.findAll();
+		
+		User user = securityUtil.getLoggedInUser();
+		return incomeRepository.findByUser(user);
 	}
 	
 	public Income getIncomeById(Long id) {
+		User user = securityUtil.getLoggedInUser();
+		
 		return incomeRepository
-				.findById(id)
+				.findByIdAndUser(id, user)
 				.orElseThrow(() -> new IncomeNotFoundException("Income Not Found"));
 	}
 	
 	public Income updateIncome(Long id, IncomeRequest request) {
-		Income income = incomeRepository
-				.findById(id)
-				.orElseThrow(() -> new IncomeNotFoundException("Income Not Found"));
 		
-		User user = userRepository
-				.findById(request.getUserId())
-				.orElseThrow(() -> new UserNotFoundException("User Not Found"));
+		User loggedInUser = securityUtil.getLoggedInUser();
+		Income income = incomeRepository
+				.findByIdAndUser(id, loggedInUser)
+				.orElseThrow(() -> new IncomeNotFoundException("Income Not Found"));
 		
 		income.setTitle(request.getTitle());
 		income.setAmount(request.getAmount());
 		income.setDescription(request.getDescription());
 		income.setDate(request.getDate());
-		income.setUser(user);
+		income.setUser(loggedInUser);
 		
 		return incomeRepository.save(income);
 				
 	}
 	
 	public void deleteIncome(Long id) {
+		
+		User user = securityUtil.getLoggedInUser();
 		Income income = incomeRepository
-		.findById(id)
+		.findByIdAndUser(id, user)
 		.orElseThrow(() -> new IncomeNotFoundException("Income Not Found"));
 		
 		incomeRepository.delete(income);

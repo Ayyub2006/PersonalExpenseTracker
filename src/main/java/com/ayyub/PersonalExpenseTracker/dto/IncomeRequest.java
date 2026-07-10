@@ -23,6 +23,4 @@ public class IncomeRequest {
 	@NotNull(message = "Date is required")
 	private LocalDate date;
 	
-	@NotNull(message = "User Id is required")
-	private Long userId;
 }
