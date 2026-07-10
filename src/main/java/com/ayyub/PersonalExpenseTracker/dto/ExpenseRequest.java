@@ -22,9 +22,7 @@ public class ExpenseRequest {
 	
 	@NotNull(message = "Date is required")
 	private LocalDate date;
-	
-	@NotNull(message = "User Id is required")
-	private Long userId;
+
 	
 	@NotNull(message = "Category Id is required")
 	private Long categoryId;
