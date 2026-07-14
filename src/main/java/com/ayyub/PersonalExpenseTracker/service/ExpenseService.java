@@ -2,6 +2,10 @@ package com.ayyub.PersonalExpenseTracker.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.ayyub.PersonalExpenseTracker.dto.ExpenseRequest;
@@ -97,5 +101,46 @@ public class ExpenseService {
     			.orElseThrow(() -> new ExpenseNotFoundException("Expense Not Found"));
     	
     	expenseRepository.delete(expense);
+    }
+    
+    public Page<Expense> getExpenses(int page,
+    		int size,
+    		String sortBy,
+    		String direction){
+    	
+    	User loggedInUser = securityUtil.getLoggedInUser();
+    	
+    	Sort sort = direction.equalsIgnoreCase("desc")
+    			?Sort.by(sortBy).descending()
+    					:Sort.by(sortBy).ascending();
+    	
+    	Pageable pageable = PageRequest.of(page, size, sort);
+    	
+    	return expenseRepository.findByUser(loggedInUser, pageable);
+    }
+    
+    public Page<Expense> searchExpense(String keyword,
+            int page,
+            int size) {
+
+User loggedInUser = securityUtil.getLoggedInUser();
+
+Pageable pageable = PageRequest.of(page, size);
+
+return expenseRepository.findByUserAndTitleContainingIgnoreCase(
+loggedInUser,
+keyword,
+pageable);
+}
+    
+    public Page<Expense> getExpenseByCategory(Long categoryId,
+    		int page,
+    		int size){
+    	
+    	User loggedInUser = securityUtil.getLoggedInUser();
+    	
+    	Pageable pageable = PageRequest.of(page, size);
+    	
+    	return expenseRepository.findByUserAndCategoryId(loggedInUser, categoryId, pageable);
     }
 }

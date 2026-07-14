@@ -3,6 +3,9 @@ package com.ayyub.PersonalExpenseTracker.repository;
 import java.util.List;
 import java.util.Optional;
 
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -21,4 +24,16 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long>{
 	Double getTotalExpenseByUser(@Param("user") User user);
 	
 	Long countByUser(User user);
+	
+	Page<Expense> findByUser(User user, Pageable pageable);
+	
+	Page<Expense> findByUserAndTitleContainingIgnoreCase(
+	        User user,
+	        String keyword,
+	        Pageable pageable);
+	
+	Page<Expense> findByUserAndCategoryId(
+			User user,
+			Long Id,
+			Pageable pageable);
 }
