@@ -17,4 +17,7 @@ public class DashboardResponse {
 	private Long totalIncomeEntries;
 	private Long totalExpenseEntries;
 	private Long totalCategories;
+	private Double monthlyBudget;
+	private Double remainingBudget;
+	private Boolean budgetExceeded;
 }
