@@ -482,3 +482,219 @@ PUT     /api/user/profile
 ![Budget Dialog](assets/screenshots/budget-dialog.png)
 
 ---
+
+---
+
+# ⚙️ Getting Started
+
+Follow the steps below to set up Ledgerly on your local machine.
+
+## Prerequisites
+
+Before running the project, ensure you have the following installed:
+
+- Java 17+
+- Node.js 18+
+- MySQL 8+
+- Maven
+- Git
+
+---
+
+# 📥 Clone the Repository
+
+```bash
+git clone https://github.com/Ayyub2006/Ledgerly.git
+
+cd Ledgerly
+```
+
+---
+
+# ⚙️ Backend Setup
+
+Navigate to the backend directory.
+
+```bash
+cd backend
+```
+
+Install dependencies and run the Spring Boot application.
+
+```bash
+mvn clean install
+
+mvn spring-boot:run
+```
+
+Backend will start on
+
+```
+http://localhost:8084
+```
+
+---
+
+# 💻 Frontend Setup
+
+Navigate to the frontend.
+
+```bash
+cd frontend
+```
+
+Install dependencies.
+
+```bash
+npm install
+```
+
+Start the development server.
+
+```bash
+npm run dev
+```
+
+Frontend runs on
+
+```
+http://localhost:5173
+```
+
+---
+
+# 🌍 Environment Variables
+
+## Backend
+
+Configure the following properties in `application.properties`.
+
+```properties
+spring.datasource.url=
+spring.datasource.username=
+spring.datasource.password=
+
+jwt.secret=
+
+jwt.expiration=
+```
+
+---
+
+## Frontend
+
+Create a `.env` file.
+
+```env
+VITE_API_BASE_URL=http://localhost:8084
+```
+
+---
+
+# 🐳 Docker
+
+Run the backend using Docker.
+
+```bash
+docker build -t ledgerly .
+
+docker run -p 8084:8084 ledgerly
+```
+
+---
+
+# ☁️ Deployment
+
+| Service | Platform |
+|----------|----------|
+| Frontend | Vercel |
+| Backend | Render |
+| Database | Railway |
+
+---
+
+## Live Application
+
+### Frontend
+
+https://personal-expense-tracker-wine-omega.vercel.app
+
+### Backend
+
+https://ledgerly-api-enny.onrender.com
+
+---
+
+# 🔒 Security Features
+
+- JWT Authentication
+- Spring Security
+- Password Encryption
+- Protected REST APIs
+- User-specific Data Isolation
+- CORS Configuration
+- Environment Variable Support
+
+---
+
+# 🚀 Future Enhancements
+
+- Email Verification
+- Forgot Password
+- Export Reports as PDF
+- Excel Export
+- Financial Goals
+- Savings Tracker
+- Multi-Currency Support
+- Notifications
+- Recurring Transactions
+- AI-powered Expense Insights
+- Mobile Application
+- Admin Dashboard
+
+---
+
+# 🤝 Contributing
+
+Contributions are welcome!
+
+If you'd like to improve Ledgerly:
+
+1. Fork the repository.
+2. Create a feature branch.
+3. Commit your changes.
+4. Push to your branch.
+5. Open a Pull Request.
+
+---
+
+# 📜 License
+
+This project is licensed under the MIT License.
+
+---
+
+# 👨‍💻 Author
+
+**Mohd Ayyub Khan**
+
+- GitHub: https://github.com/Ayyub2006
+- LinkedIn: *(Add your LinkedIn profile link here)*
+
+---
+
+# ⭐ Support
+
+If you found this project helpful,
+
+⭐ Star this repository on GitHub.
+
+It helps others discover the project and motivates future improvements.
+
+---
+
+<p align="center">
+
+Made with ❤️ using Spring Boot, React, and MySQL.
+
+</p>
