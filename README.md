@@ -679,7 +679,7 @@ This project is licensed under the MIT License.
 **Mohd Ayyub Khan**
 
 - GitHub: https://github.com/Ayyub2006
-- LinkedIn: *(Add your LinkedIn profile link here)*
+- LinkedIn: *www.linkedin.com/in/ayyubkhan20*
 
 ---
 
