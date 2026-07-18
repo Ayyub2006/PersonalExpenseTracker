@@ -164,3 +164,321 @@ Unlike basic CRUD applications, Ledgerly demonstrates practical software enginee
 This project was built to simulate how modern SaaS finance applications are designed and deployed.
 
 ---
+
+---
+
+# 🛠 Tech Stack
+
+## Frontend
+
+| Technology | Purpose |
+|------------|----------|
+| React 19 | User Interface |
+| Vite | Frontend Build Tool |
+| Material UI | UI Components |
+| React Router DOM | Client-side Routing |
+| Axios | REST API Communication |
+| Chart.js | Dashboard Analytics & Charts |
+
+---
+
+## Backend
+
+| Technology | Purpose |
+|------------|----------|
+| Java 17 | Programming Language |
+| Spring Boot 4 | Backend Framework |
+| Spring Security | Authentication & Authorization |
+| JWT | Secure User Authentication |
+| Spring Data JPA | Database Operations |
+| Hibernate | ORM |
+| Maven | Dependency Management |
+
+---
+
+## Database
+
+| Technology | Purpose |
+|------------|----------|
+| MySQL | Relational Database |
+| Railway | Cloud Database Hosting |
+
+---
+
+## DevOps & Deployment
+
+| Technology | Purpose |
+|------------|----------|
+| Docker | Containerization |
+| Render | Backend Deployment |
+| Vercel | Frontend Deployment |
+| Git | Version Control |
+| GitHub | Source Code Management |
+
+---
+
+# 🏗 System Architecture
+
+```
+                        User
+                          │
+                          ▼
+                  React + Vite Frontend
+                     (Hosted on Vercel)
+                          │
+                     REST API Calls
+                          │
+                          ▼
+             Spring Boot REST API Server
+                  (Hosted on Render)
+                          │
+                 Spring Security + JWT
+                          │
+                          ▼
+                 Spring Data JPA
+                          │
+                          ▼
+                MySQL Database (Railway)
+```
+
+---
+
+# 🔄 Application Workflow
+
+```
+User Login/Register
+        │
+        ▼
+JWT Authentication
+        │
+        ▼
+JWT Token Generated
+        │
+        ▼
+Stored in Browser
+        │
+        ▼
+Every API Request
+        │
+        ▼
+Authorization Header
+        │
+        ▼
+Spring Security Filter
+        │
+        ▼
+JWT Validation
+        │
+        ▼
+Business Logic
+        │
+        ▼
+MySQL Database
+        │
+        ▼
+JSON Response
+        │
+        ▼
+React UI Update
+```
+
+---
+
+# 📂 Project Structure
+
+```
+Ledgerly
+│
+├── backend
+│   ├── src
+│   │   ├── controller
+│   │   ├── service
+│   │   ├── repository
+│   │   ├── entity
+│   │   ├── dto
+│   │   ├── security
+│   │   ├── config
+│   │   ├── exception
+│   │   └── util
+│   │
+│   ├── Dockerfile
+│   ├── pom.xml
+│   └── application.properties
+│
+├── frontend
+│   ├── src
+│   │   ├── pages
+│   │   ├── components
+│   │   ├── services
+│   │   ├── hooks
+│   │   ├── layouts
+│   │   ├── utils
+│   │   └── assets
+│   │
+│   ├── package.json
+│   ├── vite.config.js
+│   └── vercel.json
+│
+├── assets
+│   └── screenshots
+│
+└── README.md
+```
+
+---
+
+# 🗄 Database Modules
+
+The application is designed around the following core entities.
+
+```
+User
+│
+├── Categories
+│
+├── Expenses
+│
+├── Income
+│
+└── Monthly Budget
+```
+
+Each user has complete isolation of their own financial records through secure JWT-based authentication.
+
+---
+
+# 📡 REST API Overview
+
+## Authentication
+
+```
+POST    /api/auth/register
+
+POST    /api/auth/login
+```
+
+---
+
+## Expenses
+
+```
+GET     /api/expenses
+
+POST    /api/expenses
+
+PUT     /api/expenses/{id}
+
+DELETE  /api/expenses/{id}
+```
+
+---
+
+## Income
+
+```
+GET     /api/income
+
+POST    /api/income
+
+PUT     /api/income/{id}
+
+DELETE  /api/income/{id}
+```
+
+---
+
+## Categories
+
+```
+GET     /api/categories
+
+POST    /api/categories
+
+PUT     /api/categories/{id}
+
+DELETE  /api/categories/{id}
+```
+
+---
+
+## Budget
+
+```
+GET     /api/budget
+
+POST    /api/budget
+```
+
+---
+
+## User
+
+```
+GET     /api/user/profile
+
+PUT     /api/user/profile
+```
+
+---
+
+# 📸 Application Preview
+
+## 🔐 Login Page
+
+![Login](assets/screenshots/login.png)
+
+---
+
+## 📊 Dashboard
+
+![Dashboard](assets/screenshots/dashboard.png)
+
+---
+
+## 💸 Expense Management
+
+![Expenses](assets/screenshots/expenses.png)
+
+---
+
+## 💵 Income Management
+
+![Income](assets/screenshots/income.png)
+
+---
+
+## 🗂 Category Management
+
+![Categories](assets/screenshots/categories.png)
+
+---
+
+## 🎯 Budget Tracking
+
+![Budget](assets/screenshots/budget.png)
+
+---
+
+## 👤 User Profile
+
+![Profile](assets/screenshots/profile.png)
+
+---
+
+## ➕ Add Expense
+
+![Add Expense](assets/screenshots/add-expense.png)
+
+---
+
+## ➕ Add Income
+
+![Add Income](assets/screenshots/add-income.png)
+
+---
+
+## ✏ Update Monthly Budget
+
+![Budget Dialog](assets/screenshots/budget-dialog.png)
+
+---
